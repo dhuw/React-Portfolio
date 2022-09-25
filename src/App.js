@@ -1,26 +1,32 @@
-import { Route, Routes } from 'react-router-dom'
-import Home from './components/Home'
-import About from './components/About'
-import Contact from './components/Contact'
-import Layout from './components/Layout'
-import Portfolio from './components/Portfolio'
-import Dashboard from './components/Dashboard'
-import './App.scss'
+import { useContext } from 'react'
+import { ThemeContext } from './contexts/theme'
+import Header from './components/Header/Header'
+import About from './components/About/About'
+import Projects from './components/Projects/Projects'
+import Skills from './components/Skills/Skills'
+import ScrollToTop from './components/ScrollToTop/ScrollToTop'
+import Contact from './components/Contact/Contact'
+import Footer from './components/Footer/Footer'
+import './App.css'
 
-function App() {
+const App = () => {
+  const [{ themeName }] = useContext(ThemeContext)
+
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Route>
-      </Routes>
-    </>
+    <div id='top' className={`${themeName} app`}>
+      <Header />
+
+      <main>
+        <About />
+        <Projects />
+        <Skills />
+        <Contact />
+      </main>
+
+      <ScrollToTop />
+      <Footer />
+    </div>
   )
 }
 
-export default App;
+export default App
